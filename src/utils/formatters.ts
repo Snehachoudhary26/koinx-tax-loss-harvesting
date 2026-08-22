@@ -1,32 +1,41 @@
-/**
- * Format numbers into Indian Rupee (INR) currency format
- * Example: 240000 -> ₹2,40,000
- */
-export const formatINR = (amount: number, showSign: boolean = false): string => {
+export type Currency = 'INR' | 'USD';
+
+export const formatCurrency = (
+  amount: number, 
+  currency: Currency = 'INR', 
+  showSign: boolean = false
+): string => {
   const isNegative = amount < 0;
   const absAmount = Math.abs(amount);
-  
-  const formatted = new Intl.NumberFormat('en-IN', {
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 0,
-  }).format(absAmount);
+  const symbol = currency === 'INR' ? '₹' : '$';
 
-  if (showSign) {
-    if (amount > 0) return `+₹${formatted}`;
-    if (amount < 0) return `-₹${formatted}`;
-    return `₹${formatted}`;
+  let formatted: string;
+  if (absAmount >= 10000000) {
+    formatted = `${(absAmount / 10000000).toFixed(2)}Cr`;
+  } else if (absAmount >= 1000000 && currency === 'USD') {
+    formatted = `${(absAmount / 1000000).toFixed(2)}M`;
+  } else if (absAmount >= 1000 && absAmount >= 100000 && currency === 'USD') {
+    formatted = `${(absAmount / 1000).toFixed(2)}K`;
+  } else {
+    formatted = new Intl.NumberFormat(currency === 'INR' ? 'en-IN' : 'en-US', {
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 2,
+    }).format(absAmount);
   }
 
-  return isNegative ? `-₹${formatted}` : `₹${formatted}`;
+  if (showSign) {
+    if (amount > 0) return `+${symbol}${formatted}`;
+    if (amount < 0) return `-${symbol}${formatted}`;
+    return `${symbol}${formatted}`;
+  }
+
+  return isNegative ? `-${symbol}${formatted}` : `${symbol}${formatted}`;
 };
 
-/**
- * Format token quantities nicely
- */
 export const formatCrypto = (amount: number, symbol?: string): string => {
   const formatted = new Intl.NumberFormat('en-US', {
     maximumFractionDigits: 4,
-    minimumFractionDigits: 0,
+    minimumFractionDigits: 2,
   }).format(amount);
 
   return symbol ? `${formatted} ${symbol}` : formatted;

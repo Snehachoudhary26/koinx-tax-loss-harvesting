@@ -1,127 +1,95 @@
 import { CapitalGainsAPIResponse, Holding } from '../types/tax';
 
-/**
- * Mock Capital Gains API
- * Matches exact sample structure:
- * Initial gains: STCG (100 profits, 500 losses), LTCG (1200 profits, 100 losses)
- * Net STCG = -400, Net LTCG = 1100 => Realised Capital Gains = 700
- */
 export const fetchCapitalGains = async (): Promise<CapitalGainsAPIResponse> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
         capitalGains: {
           stcg: {
-            profits: 100,
-            losses: 500,
+            profits: 4049.48,
+            losses: 32127.03,
           },
           ltcg: {
-            profits: 1200,
-            losses: 100,
+            profits: 0.00,
+            losses: 0.00,
           },
         },
       });
-    }, 450);
+    }, 350);
   });
 };
 
-/**
- * Mock Holdings API
- * Includes realistic crypto holdings (ETH, BTC, SOL, MATIC, ADA, DOT, AVAX, LINK)
- */
 export const fetchHoldings = async (): Promise<Holding[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve([
         {
-          id: 'eth',
-          coin: 'ETH',
-          coinName: 'Ethereum',
-          logo: 'https://assets.coingecko.com/coins/images/279/standard/ethereum.png',
-          totalHoldings: 2.45,
-          averageBuyPrice: 240000,
-          currentPrice: 215000,
-          stcg: { gain: 500, balance: 1.2 },
-          ltcg: { gain: -1000, balance: 1.25 },
+          id: 'wbtc',
+          coin: 'WBTC',
+          coinName: 'Wrapped Bitcoin',
+          logo: 'https://assets.coingecko.com/coins/images/7598/standard/wrapped_bitcoin_wbtc.png',
+          totalHoldings: 2218.81,
+          averageBuyPrice: 92980.19,
+          currentPrice: 104390.00,
+          stcg: { gain: 25310000, balance: 2218.81 },
+          ltcg: { gain: 0, balance: 0 },
         },
         {
           id: 'btc',
           coin: 'BTC',
           coinName: 'Bitcoin',
           logo: 'https://assets.coingecko.com/coins/images/1/standard/bitcoin.png',
-          totalHoldings: 0.35,
-          averageBuyPrice: 5200000,
-          currentPrice: 4850000,
-          stcg: { gain: -1200, balance: 0.15 },
-          ltcg: { gain: -3500, balance: 0.20 },
+          totalHoldings: 1184.12,
+          averageBuyPrice: 93072.64,
+          currentPrice: 104250.00,
+          stcg: { gain: 13240000, balance: 1184.12 },
+          ltcg: { gain: 0, balance: 0 },
+        },
+        {
+          id: 'eth',
+          coin: 'ETH',
+          coinName: 'Ethereum',
+          logo: 'https://assets.coingecko.com/coins/images/279/standard/ethereum.png',
+          totalHoldings: 20028.05,
+          averageBuyPrice: 3370.12,
+          currentPrice: 2531.06,
+          stcg: { gain: -16760000, balance: 20028.05 },
+          ltcg: { gain: 0, balance: 0 },
+        },
+        {
+          id: 'matic',
+          coin: 'MATIC',
+          coinName: 'Polygon',
+          logo: 'https://assets.coingecko.com/coins/images/4713/standard/polygon.png',
+          totalHoldings: 26038.45,
+          averageBuyPrice: 0.13,
+          currentPrice: 0.26,
+          stcg: { gain: 3348.92, balance: 26038.45 },
+          ltcg: { gain: 0, balance: 0 },
         },
         {
           id: 'sol',
           coin: 'SOL',
           coinName: 'Solana',
           logo: 'https://assets.coingecko.com/coins/images/4128/standard/solana.png',
-          totalHoldings: 18.5,
-          averageBuyPrice: 11200,
-          currentPrice: 14800,
-          stcg: { gain: 1800, balance: 10.0 },
-          ltcg: { gain: 4500, balance: 8.5 },
-        },
-        {
-          id: 'matic',
-          coin: 'POL',
-          coinName: 'Polygon (POL)',
-          logo: 'https://assets.coingecko.com/coins/images/4713/standard/polygon.png',
-          totalHoldings: 1250,
-          averageBuyPrice: 78.5,
-          currentPrice: 42.1,
-          stcg: { gain: -850, balance: 600 },
-          ltcg: { gain: -2400, balance: 650 },
+          totalHoldings: 5400.00,
+          averageBuyPrice: 195.50,
+          currentPrice: 172.30,
+          stcg: { gain: -125280.00, balance: 5400.00 },
+          ltcg: { gain: 0, balance: 0 },
         },
         {
           id: 'ada',
           coin: 'ADA',
           coinName: 'Cardano',
           logo: 'https://assets.coingecko.com/coins/images/975/standard/cardano.png',
-          totalHoldings: 840,
-          averageBuyPrice: 45.0,
-          currentPrice: 38.2,
-          stcg: { gain: -320, balance: 400 },
-          ltcg: { gain: -580, balance: 440 },
-        },
-        {
-          id: 'dot',
-          coin: 'DOT',
-          coinName: 'Polkadot',
-          logo: 'https://assets.coingecko.com/coins/images/12171/standard/polkadot.png',
-          totalHoldings: 65,
-          averageBuyPrice: 620,
-          currentPrice: 510,
-          stcg: { gain: -450, balance: 30 },
-          ltcg: { gain: -1100, balance: 35 },
-        },
-        {
-          id: 'avax',
-          coin: 'AVAX',
-          coinName: 'Avalanche',
-          logo: 'https://assets.coingecko.com/coins/images/12559/standard/Avalanche_Circle_RedWhite_Trans.png',
-          totalHoldings: 14.2,
-          averageBuyPrice: 2850,
-          currentPrice: 2310,
-          stcg: { gain: -620, balance: 7.0 },
-          ltcg: { gain: -1420, balance: 7.2 },
-        },
-        {
-          id: 'link',
-          coin: 'LINK',
-          coinName: 'Chainlink',
-          logo: 'https://assets.coingecko.com/coins/images/877/standard/chainlink-new-logo.png',
-          totalHoldings: 42.0,
-          averageBuyPrice: 1150,
-          currentPrice: 1420,
-          stcg: { gain: 890, balance: 20.0 },
-          ltcg: { gain: 1850, balance: 22.0 },
+          totalHoldings: 85000.00,
+          averageBuyPrice: 0.65,
+          currentPrice: 0.52,
+          stcg: { gain: -11050.00, balance: 85000.00 },
+          ltcg: { gain: 0, balance: 0 },
         }
       ]);
-    }, 450);
+    }, 350);
   });
 };
