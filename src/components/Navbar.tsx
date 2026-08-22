@@ -1,5 +1,5 @@
 import React from 'react';
-import { HelpCircle, RefreshCw, ShieldCheck, Sparkles } from 'lucide-react';
+import { RefreshCw, ShieldCheck, Sparkles } from 'lucide-react';
 
 interface NavbarProps {
   onRefresh: () => void;

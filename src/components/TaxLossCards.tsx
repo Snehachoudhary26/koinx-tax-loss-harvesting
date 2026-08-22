@@ -1,7 +1,7 @@
 import React from 'react';
 import { CalculatedGainsBreakdown } from '../types/tax';
 import { formatINR } from '../utils/formatters';
-import { TrendingDown, TrendingUp, Sparkles, CheckCircle2, ArrowRight, Info } from 'lucide-react';
+import { TrendingDown, TrendingUp, Sparkles, CheckCircle2, Info } from 'lucide-react';
 
 interface TaxLossCardsProps {
   preGains: CalculatedGainsBreakdown;
@@ -200,7 +200,7 @@ export const TaxLossCards: React.FC<TaxLossCardsProps> = ({
           </div>
         </div>
 
-        {/* Required Requirement: Dynamic Savings Banner */}
+        {/* Dynamic Savings Alert */}
         {isSaving ? (
           <div className="mt-4 p-3 rounded-xl bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-between animate-fadeIn">
             <div className="flex items-center gap-2">

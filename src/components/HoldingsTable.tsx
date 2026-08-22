@@ -5,11 +5,6 @@ import { HoldingsMobileCard } from './HoldingsMobileCard';
 import { 
   ArrowUpDown, 
   Search, 
-  Filter, 
-  CheckSquare, 
-  Square, 
-  TrendingDown, 
-  TrendingUp, 
   Sparkles,
   Layers
 } from 'lucide-react';
