@@ -32,6 +32,10 @@ export const formatCurrency = (
   return isNegative ? `-${symbol}${formatted}` : `${symbol}${formatted}`;
 };
 
+export const formatINR = (amount: number, showSign: boolean = false): string => {
+  return formatCurrency(amount, 'INR', showSign);
+};
+
 export const formatCrypto = (amount: number, symbol?: string): string => {
   const formatted = new Intl.NumberFormat('en-US', {
     maximumFractionDigits: 4,

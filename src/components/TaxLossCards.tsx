@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CalculatedGainsBreakdown } from '../types/tax';
 import { formatCurrency, Currency } from '../utils/formatters';
-import { CheckCircle2, ChevronDown, ChevronUp, Info, HelpCircle } from 'lucide-react';
+import { CheckCircle2, ChevronDown, ChevronUp, Info } from 'lucide-react';
 
 interface TaxLossCardsProps {
   preGains: CalculatedGainsBreakdown;
